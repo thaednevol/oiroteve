@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Eventorio</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    
+    <string-array name="menu">
+   		<item>Home</item>
+   		<item>Perfil</item>
+   		<item>Eventos</item>
+   		<item>Calendario</item>
+	</string-array>
+   		<string name="profile_hint">Inicie sesión para que sus eventos se sincronicen.</string>
+   		<string name="profile_hint2">Inicie sesión con una red social.</string>
+   		<string name="username">Usuario</string>
+   		<string name="password">Contraseña</string>
+   		<string name="enter">Ingresar</string>
+   		
+   		<style name="ButtonText">
+	   <item name="android:layout_width">fill_parent</item>
+	    <item name="android:layout_height">wrap_content</item>
+	    <item name="android:textColor">#ffffff</item>
+	    <item name="android:gravity">center</item>
+	    <item name="android:layout_margin">3dp</item>
+	    <item name="android:textStyle">bold</item>
+	    <item name="android:textSize">16sp</item>
+	</style>
+
+</resources>

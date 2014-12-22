@@ -1,0 +1,16 @@
+<resources>
+
+    <color name="black_overlay">#66000000</color>
+	<color name="azul_principal">#1f84f2</color>
+	<color name="black">#000000</color>
+	<color name="gray_separator">#adacae</color>
+	<color name="gray_hint">#555555</color>
+	<color name="gray_separator_2">#adacae</color>
+	<color name="gray_calendar">#adacae</color>
+	<color name="red_additional_data">#be0411</color>
+	<color name="white">#FFFFFF</color>
+	<color name="blue_calendar">#7fbcff</color>
+	
+	<color name="transparent">#00000000</color>
+</resources>
+
