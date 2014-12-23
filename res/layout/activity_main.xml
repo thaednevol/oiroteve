@@ -2,15 +2,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.eventorio.app.MainActivity" >
-
+    tools:context="com.eventorio.app.MainActivity"
+    android:background="#efefed" >
+    
     <TextView
         android:id="@+id/tv_profile_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/imageView1"
+        android:layout_alignTop="@+id/imageView1"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
+        android:gravity="center_vertical"
         android:text="@string/hello_world" />
     
     <!-- <android.support.v4.app.FragmentTabHost 
@@ -25,7 +27,7 @@
        <RelativeLayout
            android:layout_width="fill_parent"
            android:layout_height="fill_parent"
-           android:background="#ABC"
+           android:background="#f0efee"
            android:orientation="vertical" >
 
             <FrameLayout
@@ -56,5 +58,15 @@
         
     <!-- </android.support.v4.app.FragmentTabHost> 
     </TabHost>-->
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/navbar_logo" />
 
 </RelativeLayout>
