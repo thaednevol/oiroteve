@@ -1,11 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.eventorio.app.MainActivity"
-    android:background="#efefed" >
+    android:background="#efefed" xmlns:android="http://schemas.android.com/apk/res/android">
     
-    <TextView
+    <com.eventorio.app.utils.MyTextView
         android:id="@+id/tv_profile_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,7 +12,8 @@
         android:layout_alignTop="@+id/imageView1"
         android:layout_centerHorizontal="true"
         android:gravity="center_vertical"
-        android:text="@string/hello_world" />
+        android:text="@string/hello_world"
+        android:textStyle="bold" />
     
     <!-- <android.support.v4.app.FragmentTabHost 
     <TabHost -->

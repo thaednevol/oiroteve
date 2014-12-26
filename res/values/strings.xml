@@ -26,5 +26,13 @@
 	    <item name="android:textStyle">bold</item>
 	    <item name="android:textSize">16sp</item>
 	</style>
+	
+   	<string name="monday">MON</string>
+    <string name="tuesday">TUE</string>
+    <string name="wednesday">WED</string>
+    <string name="thursday">THU</string>
+    <string name="friday">FRI</string>
+    <string name="saturday">SAT</string>
+    <string name="sunday">SUN</string>
 
 </resources>

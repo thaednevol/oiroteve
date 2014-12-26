@@ -24,8 +24,8 @@
         </activity>
         
         <provider
-            android:name="com.tyczj.extendedcalendarview.CalendarProvider"
-            android:authorities="com.tyczj.extendedcalendarview.CalendarProvider"
+            android:name="com.eventorio.app.utils.extendedcalendarview.CalendarProvider"
+            android:authorities="com.eventorio.app.utils.extendedcalendarview.CalendarProvider"
             android:permission="signature" />
         
     </application>

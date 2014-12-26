@@ -5,13 +5,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
+
+import com.eventorio.app.utils.extendedcalendarview.CalendarProvider;
+import com.eventorio.app.utils.extendedcalendarview.Event;
+import com.eventorio.app.utils.extendedcalendarview.ExtendedCalendarView;
+import com.eventorio.app.utils.extendedcalendarview.ExtendedCalendarView.OnDayClickListener;
+import com.eventorio.app.utils.extendedcalendarview.Day;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.content.ContentValues;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.Gravity;
@@ -25,11 +33,6 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.tyczj.extendedcalendarview.CalendarProvider;
-import com.tyczj.extendedcalendarview.Day;
-import com.tyczj.extendedcalendarview.Event;
-import com.tyczj.extendedcalendarview.ExtendedCalendarView;
-import com.tyczj.extendedcalendarview.ExtendedCalendarView.OnDayClickListener;
 
 @SuppressLint({ "NewApi", "ResourceAsColor", "SimpleDateFormat" })
 public class CalendarFragment extends Fragment{
