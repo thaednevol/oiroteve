@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:contentDescription="@string/NULL"
         android:src="@drawable/navbar_logo" />
 
     <!-- com.eventorio.app.utils.My -->
@@ -21,8 +22,9 @@
         android:layout_alignBottom="@+id/iv_event_logo"
         android:layout_alignLeft="@+id/tv_event_name"
         android:layout_alignRight="@+id/tv_event_name"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:text="@string/event_date"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/gray_hint" />
 
     <com.eventorio.app.utils.MyTextView
         android:id="@+id/tv_event_name"
@@ -33,7 +35,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/iv_event_logo"
-        android:text="Large Text"
+        android:text="@string/event_name"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/black" />
 
@@ -46,13 +48,14 @@
         android:layout_below="@+id/iv_event_logo"
         android:weightSum="100" >
 
-        <TextView
+        <com.eventorio.app.utils.MyTextView
             android:id="@+id/tv_event_place"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="60"
             android:gravity="center"
-            android:text="TextView" />
+            android:text="@string/university"
+            android:textColor="@color/gray_hint" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -60,18 +63,23 @@
             android:layout_weight="40"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+            <com.eventorio.app.utils.MyTextView
+                android:id="@+id/tv_event_subscriptions_hint"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="@string/subscriptions"
+                android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
+            <com.eventorio.app.utils.MyTextView
+                android:id="@+id/tv_event_subscriptions"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/greendot"
-                android:text="TextView" />
+                android:gravity="center"
+                android:text="@string/opened"
+                android:textColor="@color/gray_hint" />
 
         </LinearLayout>
     </LinearLayout>

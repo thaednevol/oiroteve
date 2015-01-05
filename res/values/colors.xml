@@ -14,5 +14,10 @@
 	<color name="transparent">#00000000</color>
 	
 	<color name="main_blue">#12b8f0</color>
+	
+	<color name="main_background">#efefed</color>
+	
+	<color name="calendar">#e94183</color>
+	
 </resources>
 

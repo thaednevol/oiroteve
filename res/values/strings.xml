@@ -35,4 +35,29 @@
     <string name="saturday">SAT</string>
     <string name="sunday">SUN</string>
 
+    <string name="event_name">Event name</string>
+
+    <string name="event_date">1/2/2014</string>
+
+    <string name="university">Universidad</string>
+
+    <string name="subscriptions">Inscripciones</string>
+
+    <string name="opened">Abiertas</string>
+
+    <string name="NULL"></string>
+
+    <string name="previous">Anterior</string>
+
+    <string name="month">Mes</string>
+
+    <string name="next">Next</string>
+
+    <string name="today">\tHoy</string>
+    <string name="pending">\tPendiente</string>
+    <string name="subscribed">\tInscrito</string>
+    <string name="programation">Programación</string>
+    
 </resources>
+
+

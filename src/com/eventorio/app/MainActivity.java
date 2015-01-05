@@ -44,7 +44,6 @@ public class MainActivity extends ActionBarActivity {
     	mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
 		mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 		
-		
 		TabSpec tabSpec = getTabspec(mTabHost.getContext(), specs.get(0), R.layout.home_selector);
 		mTabHost.addTab(tabSpec,  HomeFragment.class, null);
 		

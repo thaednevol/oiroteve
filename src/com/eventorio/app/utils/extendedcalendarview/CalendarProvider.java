@@ -3,6 +3,7 @@ package com.eventorio.app.utils.extendedcalendarview;
 import java.util.HashMap;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -18,12 +19,13 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
+@SuppressLint("NewApi")
 public class CalendarProvider extends ContentProvider {
 	
 	private static final String DATABASE_NAME = "Calendar";
 	private static final String EVENTS_TABLE = "events";
 	private static final int DATABASE_VERSION = 4;
-	private static final String  AUTHORITY = "com.tyczj.extendedcalendarview.calendarprovider";
+	private static final String  AUTHORITY = "com.eventorio.app.utils.extendedcalendarview.calendarprovider";
 	public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/events");
 	public static final Uri CONTENT_ID_URI_BASE = Uri.parse("content://" + AUTHORITY + "/events/");
 	private static final UriMatcher uriMatcher;

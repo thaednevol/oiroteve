@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
+import com.eventorio.app.utils.MyTextView;
 import com.eventorio.app.utils.extendedcalendarview.CalendarProvider;
 import com.eventorio.app.utils.extendedcalendarview.Event;
 import com.eventorio.app.utils.extendedcalendarview.ExtendedCalendarView;
@@ -19,6 +20,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.content.ContentValues;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.format.Time;
 import android.util.Log;
@@ -53,6 +55,12 @@ protected static final String ACCOUNTS = "accounts";
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	        Bundle savedInstanceState) {
 		
+		MyTextView tv_profile_hint = (MyTextView)act.findViewById(R.id.tv_profile_hint);
+		tv_profile_hint.setText("Calendario");
+		tv_profile_hint.setTextColor(getResources().getColor(R.color.calendar));
+		tv_profile_hint.setTextSize(18);
+		tv_profile_hint.setTypeface(Typeface.DEFAULT_BOLD);
+		
 		final View rowView = inflater.inflate(R.layout.calendar_fragment, null, false);
 		
 		ExtendedCalendarView calendar = (ExtendedCalendarView)rowView.findViewById(R.id.calendarView1);
@@ -82,10 +90,8 @@ protected static final String ACCOUNTS = "accounts";
 		        public void onDayClicked(AdapterView<?> adapter, View view,
 		                int position, long id, Day day) {
 		        			getScheduleDetails(day);
-
-		                }
-
-		            });
+		        			}
+		        });
 		    
 		 //  act.getContentResolver().insert(CalendarProvider.CONTENT_URI, values);
 		
@@ -112,7 +118,6 @@ protected static final String ACCOUNTS = "accounts";
 	}
 
 	protected void getScheduleDetails(Day day) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -139,9 +144,6 @@ protected static final String ACCOUNTS = "accounts";
 					tv.setBackgroundResource(0);
 					tv.setTextColor(Color.parseColor("#000000"));
 				}
-				
-
-				
 			}
 			
 			if (calendarView1.getChildAt(i) instanceof ViewGroup){

@@ -8,6 +8,7 @@ import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import com.eventorio.app.R;
+import com.eventorio.app.utils.MyProperties;
 
 import android.content.Context;
 import android.text.format.Time;
@@ -16,9 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CalendarAdapter extends BaseAdapter{
 	
@@ -97,7 +100,7 @@ public class CalendarAdapter extends BaseAdapter{
 		}else{
 			
 	        v = vi.inflate(R.layout.day_view, null);
-			FrameLayout today = (FrameLayout)v.findViewById(R.id.today_frame);
+	        FrameLayout today = (FrameLayout)v.findViewById(R.id.today_frame);
 			Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
 			Day d = dayList.get(position);
 			if(d.getYear() == cal.get(Calendar.YEAR) && d.getMonth() == cal.get(Calendar.MONTH) && d.getDay() == cal.get(Calendar.DAY_OF_MONTH)){
@@ -109,7 +112,7 @@ public class CalendarAdapter extends BaseAdapter{
 			TextView dayTV = (TextView)v.findViewById(R.id.textView1);
 			
 			RelativeLayout rl = (RelativeLayout)v.findViewById(R.id.rl);
-			ImageView iv = (ImageView)v.findViewById(R.id.imageView1);
+			ImageView iv = (ImageView)v.findViewById(R.id.iv_navigation_previous_item);
 			ImageView blue = (ImageView)v.findViewById(R.id.imageView2);
 			ImageView purple = (ImageView)v.findViewById(R.id.imageView3);
 			ImageView green = (ImageView)v.findViewById(R.id.imageView4);
@@ -177,6 +180,10 @@ public class CalendarAdapter extends BaseAdapter{
 			}
 		}
 		
+		int a = MyUtils.getWidth(context);
+		
+		v.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, a/10));
+	
 		return v;
 	}
 	

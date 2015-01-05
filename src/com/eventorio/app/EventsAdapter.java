@@ -27,6 +27,7 @@ public class EventsAdapter extends CursorAdapter {
 	private TextView tv_event_name;
 	private TextView tv_event_date;
 	private TextView tv_event_place;
+	private TextView tv_event_subscriptions_hint;
 
 	public EventsAdapter(Context context, Cursor c, boolean autoRequery) {
 		super(context, c, autoRequery);
@@ -73,6 +74,9 @@ public class EventsAdapter extends CursorAdapter {
 		tv_event_place = (TextView)view.findViewById(R.id.tv_event_place);
 		tv_event_place.setTypeface(Typeface.DEFAULT);
 		tv_event_place.setText(cursor.getString(3));
+		
+		tv_event_subscriptions_hint=(TextView)view.findViewById(R.id.tv_event_subscriptions_hint);
+		tv_event_subscriptions_hint.setTypeface(Typeface.DEFAULT_BOLD);
 		
 		Log.d("CURSOR", cursor.getCount()+" "+cursor.getString(1));
 		

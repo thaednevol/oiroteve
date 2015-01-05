@@ -29,7 +29,7 @@
             android:textColor="@color/date_number_text_color" />
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/iv_navigation_previous_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

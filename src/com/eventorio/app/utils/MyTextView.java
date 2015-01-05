@@ -24,7 +24,7 @@ public class MyTextView extends TextView {
 
     public void init() {
         Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "font/seravek.ttc");
-        setTypeface(tf ,1);
+        setTypeface(tf);
     }
 
 }
