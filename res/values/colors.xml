@@ -17,6 +17,9 @@
 	
 	<color name="main_background">#efefed</color>
 	
+	
+	<color name="home">#fdc720</color>
+	<color name="profile">#1cbbef</color>
 	<color name="calendar">#e94183</color>
 	
 </resources>
