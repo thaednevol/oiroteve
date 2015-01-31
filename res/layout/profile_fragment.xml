@@ -66,11 +66,11 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#aaaaaa" />
 
-        <com.facebook.widget.LoginButton
+        <!-- <com.facebook.widget.LoginButton
             android:id="@+id/authButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        
+         -->
         <Button 
 	       	android:id="@+id/btnTwitter"
 	       	android:layout_width="match_parent"
