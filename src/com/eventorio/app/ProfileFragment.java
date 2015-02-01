@@ -4,16 +4,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import twitter4j.*;
+import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
+import twitter4j.conf.Configuration;
+import twitter4j.conf.ConfigurationBuilder;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.eventorio.app.utils.MyProperties;
 import com.eventorio.app.utils.MyTextView;
@@ -32,7 +42,11 @@ public class ProfileFragment extends Fragment{
     private static Twitter twitter;
     private static RequestToken requestToken;
     private AccessToken accessToken;
+	private SharedPreferences mSharedPreferences;
+	private Button btnTwitter;
+	//static String TWITTER_CONSUMER_KEY = "KT3N4qmnDVHe3EOkLxwx8q9gp"; // place your cosumer key here
 	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -57,12 +71,52 @@ public class ProfileFragment extends Fragment{
 		authButton.setReadPermissions(Arrays.asList("public_profile", "user_location", "user_birthday", "user_likes"));
 		authButton.setFragment(this);
 		
+		btnTwitter = (Button)rowView.findViewById(R.id.btnTwitter);
+		btnTwitter.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				loginToTwitter();
+			}
+		});
+		
+		initTwitter();
+		
 		return rowView;
 		
 		
 		
 	}
 	
+	protected void loginToTwitter() {
+		LoginToTwitter loginToTwitter = new LoginToTwitter();
+		
+		Handler puente = new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+				Log.e("WHAT?", "> " + msg.what);
+				if (msg.what == 0) {
+					getData();
+				} else {
+					
+				}
+			}
+		};
+		loginToTwitter.setPuente(puente);
+		loginToTwitter.execute();
+	}
+
+	protected void getData() {
+		TwitterData twitterData = new TwitterData();
+		twitterData.execute();
+	}
+
+	private void initTwitter() {
+		mSharedPreferences = ctx.getApplicationContext().getSharedPreferences(
+				"MyPref", 0);
+		
+	}
+
 	@SuppressWarnings("deprecation")
 	private void onSessionStateChange(Session session, SessionState state, Exception exception) {
 	    if (state.isOpened()) {
@@ -182,4 +236,142 @@ public class ProfileFragment extends Fragment{
 	    return userInfo.toString();
 	}
 	
+	class LoginToTwitter extends AsyncTask<String, String, String> {
+
+		private Handler puente;
+		private Message mensaje;
+		
+		/**
+		 * Before starting background thread Show Progress Dialog
+		 * */
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			
+			mensaje = new Message();
+		}
+
+		/**
+		 * getting Places JSON
+		 * */
+		protected String doInBackground(String... args) {
+			try {
+				ConfigurationBuilder builder = new ConfigurationBuilder();
+				builder.setOAuthConsumerKey(MyProperties.TWITTER_CONSUMER_KEY);
+				builder.setOAuthConsumerSecret(MyProperties.TWITTER_CONSUMER_SECRET);
+				Configuration configuration = builder.build();
+				
+				TwitterFactory factory = new TwitterFactory(configuration);
+				twitter = factory.getInstance();
+				requestToken = twitter
+						.getOAuthRequestToken(MyProperties.TWITTER_CALLBACK_URL);
+			} catch (TwitterException e) {
+				e.printStackTrace();
+				mensaje.what=1;
+			}
+			return null;
+		}
+
+		protected void onPostExecute(String file_url) {
+			startActivityForResult(new Intent(Intent.ACTION_VIEW, Uri
+					.parse(requestToken.getAuthenticationURL())),111);
+			
+			puente.sendMessage(mensaje);
+		}
+
+		public Handler getPuente() {
+			return puente;
+		}
+
+		public void setPuente(Handler puente) {
+			this.puente = puente;
+		}
+
+		public Message getMensaje() {
+			return mensaje;
+		}
+
+		public void setMensaje(Message mensaje) {
+			this.mensaje = mensaje;
+		}
+
+	}
+	
+	class TwitterData extends AsyncTask<String, String, String> {
+
+		/**
+		 * Before starting background thread Show Progress Dialog
+		 * */
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+
+		/**
+		 * getting Places JSON
+		 * */
+		protected String doInBackground(String... args) {
+				Uri uri = ctx.getIntent().getData();
+				if (uri != null && uri.toString().startsWith(MyProperties.TWITTER_CALLBACK_URL)) {
+					// oAuth verifier
+					String verifier = uri
+							.getQueryParameter(MyProperties.URL_TWITTER_OAUTH_VERIFIER);
+
+					try {
+						// Get the access token
+						AccessToken accessToken = twitter.getOAuthAccessToken(
+								requestToken, verifier);
+
+						// Shared Preferences
+						Editor e = mSharedPreferences.edit();
+
+						// After getting access token, access token secret
+						// store them in application preferences
+						e.putString(MyProperties.PREF_KEY_OAUTH_TOKEN, accessToken.getToken());
+						e.putString(MyProperties.PREF_KEY_OAUTH_SECRET,
+								accessToken.getTokenSecret());
+						// Store login status - true
+						e.putBoolean(MyProperties.PREF_KEY_TWITTER_LOGIN, true);
+						e.commit(); // save changes
+
+						Log.e("Twitter OAuth Token", "> " + accessToken.getToken());
+
+						// Hide login button
+				/*		btnLoginTwitter.setVisibility(View.GONE);
+
+						// Show Update Twitter
+						lblUpdate.setVisibility(View.VISIBLE);
+						txtUpdate.setVisibility(View.VISIBLE);
+						btnUpdateStatus.setVisibility(View.VISIBLE);
+						btnLogoutTwitter.setVisibility(View.VISIBLE);
+					*/	
+						// Getting user details from twitter
+						// For now i am getting his name only
+						long userID = accessToken.getUserId();
+						User user = twitter.showUser(userID);
+						String username = user.getName();
+						
+						Log.d("USERNAME", username);
+						
+						// Displaying in xml ui
+			//			lblUserName.setText(Html.fromHtml("<b>Welcome " + username + "</b>"));
+					} catch (Exception e) {
+						// Check log for login errors
+						Log.e("Twitter Login Error", "> " + e.toString());
+					}
+				}
+				
+			
+			return null;
+		}
+
+		protected void onPostExecute(String file_url) {
+			
+		}
+
+	}
+
+	
 }
+
+

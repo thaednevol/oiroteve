@@ -2,12 +2,16 @@ package com.eventorio.app;
 
 import java.util.ArrayList;
 
+import com.eventorio.app.utils.MyProperties;
 import com.eventorio.app.utils.MyTextView;
 
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.ActionBarActivity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -89,4 +93,7 @@ public class MainActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	
+
 }
