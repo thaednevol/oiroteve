@@ -13,9 +13,11 @@
 	</string-array>
    		<string name="profile_hint">Inicie sesión para que sus eventos se sincronicen.</string>
    		<string name="profile_hint2">Inicie sesión con una red social.</string>
+   		<string name="profile_hint3">Si no tiene usuario, regístrese para crear una cuenta.</string>
    		<string name="username">Usuario</string>
    		<string name="password">Contraseña</string>
    		<string name="enter">Ingresar</string>
+   		<string name="remember_password">Recordar contraseña</string>
    		
    		<style name="ButtonText">
 	   <item name="android:layout_width">fill_parent</item>
@@ -57,6 +59,20 @@
     <string name="pending">\tPendiente</string>
     <string name="subscribed">\tInscrito</string>
     <string name="programation">Programación</string>
+    <string name="welcome">¡Bienvenido!</string>
+    <string name="home_text_hint1">En Eventorio podrá encontrar los eventos académicos más destacados de las universidades y organizaciones del país.</string>
+    <string name="home_text_hint2">Cree su cuenta de usuario y podrá registrarse a los eventos de su preferencia.</string>
+    <string name="home_text_hint3">Eventorio es el directorio digital de eventos en su bolsillo.</string>
+    
+    <string name="profile">Profile</string>
+    <string name="email">Correo electrónico</string>
+    
+    <string name="register">Regístrese</string>
+
+    
+    <string name="facebook_app_id">1452857938272454</string>
+    
+    <string name="title_facebook_login">Login Eventorio Facebook</string>
     
 </resources>
 

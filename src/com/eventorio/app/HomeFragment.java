@@ -8,6 +8,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.ColorRes;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +32,7 @@ public class HomeFragment extends Fragment{
 		
 		tv_profile_hint=(MyTextView)ctx.findViewById(R.id.tv_profile_hint);
 		tv_profile_hint.setText("Home");
-		tv_profile_hint.setTextColor(Color.parseColor("#12b8f0"));
+		tv_profile_hint.setTextColor(getResources().getColor(R.color.home));
 		tv_profile_hint.setTextSize(18);
 		tv_profile_hint.setTypeface(Typeface.DEFAULT_BOLD);
 		

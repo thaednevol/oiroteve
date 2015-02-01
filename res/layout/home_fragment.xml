@@ -1,21 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1cbbef"
-    android:orientation="vertical"
+    android:background="@color/home"
     android:paddingLeft="20dp"
     android:paddingRight="20dp" >
 
     <com.eventorio.app.utils.MyTextView
         android:id="@+id/tv_profile_hint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#FFF"
         android:gravity="center_horizontal"
         android:paddingTop="10dp"
-        android:text="¡Bienvenido!"
+        android:text="@string/welcome"
+        android:textAppearance="?android:attr/textAppearance" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_below="@+id/imageView1"
+        android:background="#FFF"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/home_text_hint2"
         android:textAppearance="?android:attr/textAppearance"
         android:textColor="#aaaaaa" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/textView1"
+        android:background="#FFF"
+        android:padding="10dp"
+        android:text="@string/home_text_hint3"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearance"
+        android:textColor="#aaaaaa" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_profile_hint"
+        android:layout_below="@+id/tv_profile_hint"
+        android:background="#FFF"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/home_text_hint1"
+        android:textAppearance="?android:attr/textAppearance"
+        android:textColor="#aaaaaa" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:background="#FFF"
+        android:padding="10dp"
+        android:src="@drawable/home_image" />
+
+</RelativeLayout>

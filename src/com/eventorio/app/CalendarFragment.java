@@ -48,7 +48,6 @@ protected static final String ACCOUNTS = "accounts";
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.act=getActivity();
-        
     }
 	
 	@Override
@@ -112,7 +111,8 @@ protected static final String ACCOUNTS = "accounts";
 
 	    long milliTime = calendar.getTimeInMillis();
 		 
-		calendarView1.setDate(milliTime);
+		calendarView1.setDate(milli
+	ime);
 		getInstances(calendarView1);*/
 		return rowView;
 	}
