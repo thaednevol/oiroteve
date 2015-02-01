@@ -2,12 +2,12 @@ package com.eventorio.app;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import twitter4j.*;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,7 +24,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import com.eventorio.app.utils.MyProperties;
 import com.eventorio.app.utils.MyTextView;
 import com.facebook.*;
@@ -44,20 +43,35 @@ public class ProfileFragment extends Fragment{
     private AccessToken accessToken;
 	private SharedPreferences mSharedPreferences;
 	private Button btnTwitter;
+	private String salida;
 	//static String TWITTER_CONSUMER_KEY = "KT3N4qmnDVHe3EOkLxwx8q9gp"; // place your cosumer key here
 	
 
-	@Override
+	@SuppressLint("NewApi") @Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    this.ctx=getActivity();
 	    uiHelper = new UiLifecycleHelper(getActivity(), callback);
 	    uiHelper.onCreate(savedInstanceState);
+	    
+	    if (!getArguments().getString(MainActivity.DATA,"0").contentEquals("0")){
+	    	TwitterData twitterData = new TwitterData();
+	    	
+	    	Uri myUri = Uri.parse(getArguments().getString(MainActivity.DATA));
+	    	twitterData.setUri(myUri);
+	    	twitterData.execute();
+	    	
+	    }
+	    
 	}
 	
+	@SuppressLint("NewApi") 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	        Bundle savedInstanceState) {
+		
+
+	    
 		
 		tv_profile_hint=(MyTextView)ctx.findViewById(R.id.tv_profile_hint);
 		tv_profile_hint.setText(getResources().getString(R.string.profile));
@@ -107,8 +121,16 @@ public class ProfileFragment extends Fragment{
 	}
 
 	protected void getData() {
-		TwitterData twitterData = new TwitterData();
-		twitterData.execute();
+		Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(requestToken.getAuthenticationURL()));
+		
+		i.putExtra("SALIDA", salida);
+		startActivityForResult(i,111);
+		//startActivity(i);
+		//ctx.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(requestToken.getAuthenticationURL())));
+		
+		
+		//TwitterData twitterData = new TwitterData();
+		//twitterData.execute();
 	}
 
 	private void initTwitter() {
@@ -165,8 +187,41 @@ public class ProfileFragment extends Fragment{
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    super.onActivityResult(requestCode, resultCode, data);
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		Log.d("onActivityReslt called ", requestCode+" "+resultCode);
+	    if (data!=null){
+	    	Log.d("onActivityReslt called ", data.toString());	
+	    }
+	    
+	    Uri uri = ctx.getIntent().getData();
+	    
+	    if (uri!=null){
+	    	Log.d("onActivityReslt called ", uri.toString());	
+	    }
+	    
+	    if (salida!=null){
+	    	Log.d("onActivityReslt called SALIDA", salida);	
+	    }
+	    
+	    /*Log.d("onActivityReslaaaat called ", requestCode+" "+resultCode);
+		
+		
+		
+		Log.d("onActivityReslt called ", "URI: "+uri.toString());
+		
+		
+	    if (data!=null){
+	    	Log.d("onActivityReslt called ", data.toString());	
+	    }*/
+		
+		
+		
+	    
 	    uiHelper.onActivityResult(requestCode, resultCode, data);
+	    
+	    
+	    
 	}
 
 	@Override
@@ -273,9 +328,6 @@ public class ProfileFragment extends Fragment{
 		}
 
 		protected void onPostExecute(String file_url) {
-			startActivityForResult(new Intent(Intent.ACTION_VIEW, Uri
-					.parse(requestToken.getAuthenticationURL())),111);
-			
 			puente.sendMessage(mensaje);
 		}
 
@@ -298,6 +350,7 @@ public class ProfileFragment extends Fragment{
 	}
 	
 	class TwitterData extends AsyncTask<String, String, String> {
+		private Uri uri;
 
 		/**
 		 * Before starting background thread Show Progress Dialog
@@ -311,10 +364,7 @@ public class ProfileFragment extends Fragment{
 		 * getting Places JSON
 		 * */
 		protected String doInBackground(String... args) {
-				Uri uri = ctx.getIntent().getData();
-				if (uri != null && uri.toString().startsWith(MyProperties.TWITTER_CALLBACK_URL)) {
-					// oAuth verifier
-					String verifier = uri
+				String verifier = uri
 							.getQueryParameter(MyProperties.URL_TWITTER_OAUTH_VERIFIER);
 
 					try {
@@ -359,10 +409,15 @@ public class ProfileFragment extends Fragment{
 						// Check log for login errors
 						Log.e("Twitter Login Error", "> " + e.toString());
 					}
-				}
-				
-			
 			return null;
+		}
+
+		public Uri getUri() {
+			return uri;
+		}
+
+		public void setUri(Uri uri) {
+			this.uri = uri;
 		}
 
 		protected void onPostExecute(String file_url) {
@@ -373,5 +428,3 @@ public class ProfileFragment extends Fragment{
 
 	
 }
-
-

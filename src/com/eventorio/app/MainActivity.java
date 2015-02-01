@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +23,7 @@ import android.widget.TabHost.TabSpec;
 public class MainActivity extends ActionBarActivity {
 
 	
+	public static String DATA="DATA";
 	private ArrayList<String> specs;
 	private FragmentTabHost mTabHost;
 
@@ -34,9 +34,12 @@ public class MainActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_main);
 		
 		initComponents();
+		
 	}
 
 	private void initComponents() {
+		Uri mUri = getIntent().getData();
+		
 		String[] aLabels = getResources().getStringArray(R.array.menu);
 		
 		specs = new ArrayList<String>();
@@ -52,13 +55,30 @@ public class MainActivity extends ActionBarActivity {
 		mTabHost.addTab(tabSpec,  HomeFragment.class, null);
 		
 		tabSpec = getTabspec(mTabHost.getContext(), specs.get(1), R.layout.profile_selector);
-		mTabHost.addTab(tabSpec,  ProfileFragment.class, null);
+		
+		Intent intent = new Intent(mTabHost.getContext(),  ProfileFragment.class);
+		Bundle mBundle = new Bundle();
+		if (mUri != null){
+			intent.putExtra(MainActivity.DATA,mUri.toString());
+			mBundle.putString(MainActivity.DATA, mUri.toString());
+		}
+		//tabSpec.setContent(intent);
+		
+		
+		
+		mTabHost.addTab(tabSpec, ProfileFragment.class, mBundle );
 		
 		tabSpec = getTabspec(mTabHost.getContext(), specs.get(2), R.layout.events_selector);
 		mTabHost.addTab(tabSpec, EventsFragment.class, null);
 		
 		tabSpec = getTabspec(mTabHost.getContext(), specs.get(3), R.layout.calendar_selector);
 		mTabHost.addTab(tabSpec, CalendarFragment.class, null);
+		
+		if (mUri != null && mUri.toString().startsWith(MyProperties.TWITTER_CALLBACK_URL)){
+			mTabHost.setCurrentTab(1);
+		}
+		
+		
 	}
 
 	private TabSpec getTabspec(Context context, String string, int homeSelector) {
@@ -93,7 +113,5 @@ public class MainActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	
 
 }
