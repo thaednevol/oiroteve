@@ -1,8 +1,11 @@
 package com.eventorio.app;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import twitter4j.*;
+
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.User;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import twitter4j.conf.Configuration;
@@ -24,11 +27,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ScrollView;
+import android.widget.TextView;
+
+import com.eventorio.app.utils.MyButton;
 import com.eventorio.app.utils.MyProperties;
 import com.eventorio.app.utils.MyTextView;
-import com.facebook.*;
+import com.facebook.Request;
+import com.facebook.Response;
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphUser;
-import com.facebook.widget.*;
+import com.facebook.widget.LoginButton;
 
 public class ProfileFragment extends Fragment{
 	
@@ -45,6 +56,11 @@ public class ProfileFragment extends Fragment{
 	private Button btnTwitter;
 	private String salida;
 	//static String TWITTER_CONSUMER_KEY = "KT3N4qmnDVHe3EOkLxwx8q9gp"; // place your cosumer key here
+	private TextView tv_main_temp;
+	private MyButton btn_profile_enter;
+	private ScrollView sv_main;
+	private ScrollView sv_register;
+	private MyTextView tv_profile_register;
 	
 
 	@SuppressLint("NewApi") @Override
@@ -69,9 +85,10 @@ public class ProfileFragment extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	        Bundle savedInstanceState) {
+		tv_main_temp  = (TextView)ctx.findViewById(R.id.tv_main_temp);
 		
-
-	    
+		
+		
 		
 		tv_profile_hint=(MyTextView)ctx.findViewById(R.id.tv_profile_hint);
 		tv_profile_hint.setText(getResources().getString(R.string.profile));
@@ -80,6 +97,22 @@ public class ProfileFragment extends Fragment{
 		tv_profile_hint.setTypeface(Typeface.DEFAULT_BOLD);
 		
 		final View rowView = inflater.inflate(R.layout.profile_fragment, container, false);
+		
+		sv_main = (ScrollView)rowView.findViewById(R.id.sv_main);
+		sv_register = (ScrollView)rowView.findViewById(R.id.sv_register);
+		
+		btn_profile_enter = (MyButton) rowView.findViewById(R.id.btn_profile_enter);
+		
+		tv_profile_register = (MyTextView)rowView.findViewById(R.id.tv_profile_register);
+		tv_profile_register.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				initRegister();
+			}
+		});
+		tv_profile_register.setTextColor(getResources().getColor(R.color.red_additional_data));
+		tv_profile_register.setTextSize(18);
+		tv_profile_register.setTypeface(Typeface.DEFAULT_BOLD);
 		
 		LoginButton authButton = (LoginButton) rowView.findViewById(R.id.authButton);
 		authButton.setReadPermissions(Arrays.asList("public_profile", "user_location", "user_birthday", "user_likes"));
@@ -97,11 +130,31 @@ public class ProfileFragment extends Fragment{
 		initTwitter();
 		
 		return rowView;
+	}
+	
+	protected void initRegister() {
+		tv_main_temp.setVisibility(View.VISIBLE);
+		tv_main_temp.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				initProfile();
+			}
+		});
+		tv_main_temp.setText(getResources().getString(R.string.back));
+		sv_main.setVisibility(View.GONE);
+		sv_register.setVisibility(View.VISIBLE);
+		
 		
 		
 		
 	}
-	
+
+	protected void initProfile() {
+		tv_main_temp.setVisibility(View.GONE);
+		sv_main.setVisibility(View.VISIBLE);
+		sv_register.setVisibility(View.GONE);
+	}
+
 	protected void loginToTwitter() {
 		LoginToTwitter loginToTwitter = new LoginToTwitter();
 		

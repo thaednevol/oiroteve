@@ -4,57 +4,51 @@
     <string name="name_app">Eventorio</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    
+
     <string-array name="menu">
-   		<item>Home</item>
-   		<item>Perfil</item>
-   		<item>Eventos</item>
-   		<item>Calendario</item>
-	</string-array>
-   		<string name="profile_hint">Inicie sesión para que sus eventos se sincronicen.</string>
-   		<string name="profile_hint2">Inicie sesión con una red social.</string>
-   		<string name="profile_hint3">Si no tiene usuario, regístrese para crear una cuenta.</string>
-   		<string name="username">Usuario</string>
-   		<string name="password">Contraseña</string>
-   		<string name="enter">Ingresar</string>
-   		<string name="remember_password">Recordar contraseña</string>
-   		
-   		<style name="ButtonText">
-	   <item name="android:layout_width">fill_parent</item>
-	    <item name="android:layout_height">wrap_content</item>
-	    <item name="android:textColor">#ffffff</item>
-	    <item name="android:gravity">center</item>
-	    <item name="android:layout_margin">3dp</item>
-	    <item name="android:textStyle">bold</item>
-	    <item name="android:textSize">16sp</item>
-	</style>
-	
-   	<string name="monday">MON</string>
+        <item>Home</item>
+        <item>Perfil</item>
+        <item>Eventos</item>
+        <item>Calendario</item>
+    </string-array>
+
+    <string name="profile_hint">Inicie sesión para que sus eventos se sincronicen.</string>
+    <string name="profile_hint2">Inicie sesión con una red social.</string>
+    <string name="profile_hint3">Si no tiene usuario, regístrese para crear una cuenta.</string>
+    <string name="username">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="repeat_password">Repetir contraseña</string>
+    <string name="enter">Ingresar</string>
+    <string name="remember_password">Recordar contraseña</string>
+    <string name="register_hint">Complete los siguientes datos para registrarse como usuario:</string>
+    <string name="register_conditions">Al registrarse, confirma  que ha leído y acepta los términos y condiciones de Uso que están disponibles en nuestra página web: www.eventorio.com</string>
+
+    <style name="ButtonText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <string name="monday">MON</string>
     <string name="tuesday">TUE</string>
     <string name="wednesday">WED</string>
     <string name="thursday">THU</string>
     <string name="friday">FRI</string>
     <string name="saturday">SAT</string>
     <string name="sunday">SUN</string>
-
     <string name="event_name">Event name</string>
-
     <string name="event_date">1/2/2014</string>
-
     <string name="university">Universidad</string>
-
     <string name="subscriptions">Inscripciones</string>
-
     <string name="opened">Abiertas</string>
-
     <string name="NULL"></string>
-
     <string name="previous">Anterior</string>
-
     <string name="month">Mes</string>
-
     <string name="next">Next</string>
-
     <string name="today">\tHoy</string>
     <string name="pending">\tPendiente</string>
     <string name="subscribed">\tInscrito</string>
@@ -63,17 +57,14 @@
     <string name="home_text_hint1">En Eventorio podrá encontrar los eventos académicos más destacados de las universidades y organizaciones del país.</string>
     <string name="home_text_hint2">Cree su cuenta de usuario y podrá registrarse a los eventos de su preferencia.</string>
     <string name="home_text_hint3">Eventorio es el directorio digital de eventos en su bolsillo.</string>
-    
     <string name="profile">Profile</string>
     <string name="email">Correo electrónico</string>
-    
-    <string name="register">Regístrese</string>
-
-    
+    <string name="register">Regístrarse</string>
     <string name="facebook_app_id">1452857938272454</string>
-    
     <string name="title_facebook_login">Login Eventorio Facebook</string>
-    
+    <string name="name">Nombre</string>
+    <string name="lastname">Apellido</string>
+    <string name="mobile">Celular</string>
+    <string name="back">Atrás</string>
+
 </resources>
-
-

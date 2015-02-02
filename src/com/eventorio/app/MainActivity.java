@@ -8,7 +8,6 @@ import com.eventorio.app.utils.MyTextView;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.ActionBarActivity;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TabHost.TabSpec;
@@ -26,6 +26,7 @@ public class MainActivity extends ActionBarActivity {
 	public static String DATA="DATA";
 	private ArrayList<String> specs;
 	private FragmentTabHost mTabHost;
+	private TextView tv_main_temp;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,8 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	private void initComponents() {
+		tv_main_temp  = (TextView)findViewById(R.id.tv_main_temp);
+		
 		Uri mUri = getIntent().getData();
 		
 		String[] aLabels = getResources().getStringArray(R.array.menu);
@@ -54,17 +57,12 @@ public class MainActivity extends ActionBarActivity {
 		TabSpec tabSpec = getTabspec(mTabHost.getContext(), specs.get(0), R.layout.home_selector);
 		mTabHost.addTab(tabSpec,  HomeFragment.class, null);
 		
-		tabSpec = getTabspec(mTabHost.getContext(), specs.get(1), R.layout.profile_selector);
 		
-		Intent intent = new Intent(mTabHost.getContext(),  ProfileFragment.class);
+		tabSpec = getTabspec(mTabHost.getContext(), specs.get(1), R.layout.profile_selector);
 		Bundle mBundle = new Bundle();
 		if (mUri != null){
-			intent.putExtra(MainActivity.DATA,mUri.toString());
 			mBundle.putString(MainActivity.DATA, mUri.toString());
 		}
-		//tabSpec.setContent(intent);
-		
-		
 		
 		mTabHost.addTab(tabSpec, ProfileFragment.class, mBundle );
 		
@@ -77,6 +75,13 @@ public class MainActivity extends ActionBarActivity {
 		if (mUri != null && mUri.toString().startsWith(MyProperties.TWITTER_CALLBACK_URL)){
 			mTabHost.setCurrentTab(1);
 		}
+		
+		mTabHost.setOnTabChangedListener(new OnTabChangeListener() {
+			@Override
+			public void onTabChanged(String tabId) {
+				tv_main_temp.setVisibility(View.GONE);
+			}
+		});
 		
 		
 	}
